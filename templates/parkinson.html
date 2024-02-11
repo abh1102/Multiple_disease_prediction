@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css"/>
+    <title>Parkinson's Disease prediction</title>
+    <style>
+      body{
+        background-image:url('/templates/par.jpg');
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: cover;
+      }
+      form {
+        border-radius: 12px;
+        max-width: 850px;
+        margin: 10px auto;
+        padding: 10px;
+      }
+      .form-back{
+        background-color: rgba(255, 255, 255, 0.657);
+        backdrop-filter: blur(10px); 
+      }
+      .inputLabel{
+        font-size: 23px !important;
+        font-weight: 600;
+        color: #ab47bc !important;
+      }
+      .predict{
+        text-align: center;
+        margin-top: 20px;
+      }
+      .predicted{
+        display: inline;
+        border-radius: 10px;
+        padding: 10px;
+        font-size: 16px;
+        width: fit-content;
+        pointer-events: none;
+      }
+      .brand {
+        background: #ab47bc !important;
+      }
+
+      .brand-text {
+        color: #ab47bc !important;
+      }
+      .title{
+        text-align: center;
+        margin-top: 10px;
+      }
+      .titleInner{
+        display: inline;
+        padding: 10px;
+        border-radius: 10px;
+        background-color: rgba(255, 255, 255, 0.657);
+        backdrop-filter: blur(10px);
+        font-size: 35px;
+      }
+      input::placeholder{
+        color: rgb(131, 131, 131);
+
+      }
+    </style>
+  </head>
+  <body>
+      <div class="title">
+        <div class="titleInner brand-text">Parkinson's Disease prediction</div>   
+      </div>
+        <form action="/predict_pa" method="POST" class="form-back purple-text">
+            <div class="row">
+                <div class="input-field col s4">
+                    <label class="inputLabel">mdvp_fo</label>
+                    <input placeholder="0" type="text" name="mdvp_fo" value="">
+                </div>
+                <div class="input-field col s4">
+                    <label class="inputLabel">mdvp fhi</label>
+                    <input placeholder="MDVP:Fhi(Hz) range(102,592)" type="text" name="mdvp_fhi"value="">
+                </div>
+                <div class="input-field col s4">
+                    <label class="inputLabel">mdvp flo</label>
+                    <input placeholder="MDVP:Flo(Hz) range(65,240)" type="text" name="mdvp_flo"value="">  
+                </div>
+            </div>
+      
+            <div class="row">
+              <div class="input-field col s4">
+                <label class="inputLabel">mdvp_jitper</label>
+                <input placeholder="MDVP:Jitter(%) range(0.001, 0.033)"" type="text" name="mdvp_jitper"value="">
+              </div>
+              <div class="input-field col s4">
+                <label class="inputLabel">mdvp_jitabs</label>
+                <input placeholder="MDVP:Jitter(Abs) range(0.00002, 0.0002)" type="text" name="mdvp_jitabs"value="">
+              </div>
+              <div class="input-field col s4">
+                <label class="inputLabel">mdvp_rap</label>
+                <input placeholder="MDVP:RAP range(0.0006, 0.02)" type="text" name="mdvp_rap"value="">
+              </div>
+            </div>
+      
+            <div class="row">
+              <div class="input-field col s4">
+                <label class="inputLabel">MDVP:PPQ</label>
+                <input placeholder="MDVP:PPQ range(0.0009, 0.02)" type="text" name="MDVP:PPQ"value="">
+              </div>
+              <div class="input-field col s4">
+                <label class="inputLabel">Jitter:DDP</label>
+                <input placeholder="Jitter:DDP range(0.002, 0.065)" type="text" name="Jitter:DDP"value="">
+              </div>
+              <div class="input-field col s4">
+                <label class="inputLabel">MDVP:Shimmer</label>
+                <input placeholder="MDVP:Shimmer range(0.009, 0.12)" type="text" name="MDVP:Shimmer"value="">
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="input-field col s4">
+                <label class="inputLabel">MDVP:Shimmer(dB)</label>
+                <input placeholder="MDVP:Shimmer(dB) range(0.085, 1.302)" type="text" name="MDVP:Shimmer(dB)"value="" >
+              </div>
+              <div class="input-field col s4">
+                <label class="inputLabel">Shimmer:APQ3</label>
+                <input placeholder="Shimmer:APQ3 range(0.004, 0.056)"" type="text" name="Shimmer:APQ3"value="">
+              </div>
+              <div class="input-field col s4">
+                <label class="inputLabel">Shimmer:APQ5	</label>
+                <input placeholder="Shimmer:APQ5 range(0.005, 0.08)"" type="text" name="Shimmer:APQ5" value="">
+              </div>
+            </div>
+            <div class="row">
+                <div class="input-field col s4">
+                  <label class="inputLabel">MDVP:APQ</label>
+                  <input placeholder="MDVP:APQ range(0.007, 0.14)" type="text" name="MDVP:APQ" value="">
+                </div>
+                <div class="input-field col s4">
+                  <label class="inputLabel">Shimmer:DDA</label>
+                  <input placeholder="Shimmer:DDA range(0.013, 0.17)" type="text" name="Shimmer:DDA"value="">
+                </div>
+                <div class="input-field col s4">
+                  <label class="inputLabel">NHR	</label>
+                  <input placeholder="SNHR range(0.0006, 0.31)" type="text" name="NHR" value="">
+                </div>
+              </div>
+              <div class="row">
+                <div class="input-field col s4">
+                  <label class="inputLabel">HNR</label>
+                  <input placeholder="MDVP:APQ range(0.007, 0.14)" type="text" name="HNR"value="" >
+                </div>
+                <div class="input-field col s4">
+                  <label class="inputLabel">RPDE</label>
+                  <input placeholder="RPDE range(0.25, 0.68)"type="text" name="RPDE"value="">
+                </div>
+                <div class="input-field col s4">
+                  <label class="inputLabel">DFA</label>
+                  <input placeholder="DFA range(0.57, 0.82)"" type="text" name="DFA"value="" >
+                </div>
+              </div>
+              <div class="row">
+                <div class="input-field col s4">
+                  <label class="inputLabel">spread1	</label>
+                  <input placeholder="Spread1 range(-7, -2)" type="text" name="spread1"value="" >
+                </div>
+                <div class="input-field col s4">
+                  <label class="inputLabel">spread2</label>
+                  <input placeholder="Spread2 range(0.006, 0.45)"type="text" name="spread2"value="">
+                </div>
+                <div class="input-field col s4">
+                  <label class="inputLabel">D2</label>
+                  <input placeholder="Spread2 range(0.006, 0.45)"type="text" name="spread3"value="">
+                </div>
+                <div class="row">
+                  <div class="input-field col s4">
+                    <label class="inputLabel">PPE</label>
+                    <input placeholder="0" type="text" name="ppe"value="" >
+                  </div>
+              </div>
+        
+            <div class="center">
+              <input type="submit" class="btn brand z-depth-0">
+            </div>
+          </form>
+        
+    </form>
+    <div class="predict"">
+      <div class="predicted btn brand z-depth-0">{{ prediction }}</div>
+    </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+  </body>
+</html>

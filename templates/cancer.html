@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css"/>
+    <title>Cancer Prediction</title>
+    <div class="gradient-background"></div>
+
+    <style>
+        body {
+            background: linear-gradient(62deg, #EE7752, #E73C7E, #23A6D5, #23D5AB);
+     animation: gradient 5s ease infinite; 
+      background-size: 400% 400%;
+        }
+      form {
+        border-radius: 12px;
+        max-width: 800px;
+        margin: 10px auto;
+        padding: 10px;
+      }
+      .form-back{
+        background-color: rgba(255, 255, 255, 0.657);
+        backdrop-filter: blur(10px); 
+      }
+      .inputLabel{
+        font-size: 20px;
+        font-weight: 600;
+        color: #ab47bc !important;
+      }
+      .predict{
+        text-align: center;
+        margin-top: 20px;
+      }
+      .predicted{
+        display: inline;
+        border-radius: 10px;
+        padding: 10px;
+        font-size: 16px;
+        width: fit-content;
+        pointer-events: none;
+      }
+      .brand {
+        background: #ab47bc !important;
+      }
+
+      .brand-text {
+        color: #ab47bc !important;
+      }
+      .title{
+        text-align: center;
+        margin-top: 10px;
+      }
+      .titleInner{
+        display: inline;
+        padding: 10px;
+        border-radius: 10px;
+        background-color: rgba(255, 255, 255, 0.657);
+        backdrop-filter: blur(10px);
+        font-size: 35px;
+      }
+/* @-webkit-keyframes gradient{
+  0% {
+    background-position: 0 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+     background-position: 0% 50%;
+  }
+}
+@keyframes gradient{
+  0% {
+    background-position: 0 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+     background-position: 0% 50%;
+  }
+} */
+     
+    </style>
+  </head>
+  <body class="gradient_background">
+    <div class="title">
+      <div class="titleInner brand-text">Cancer Prediction</div>
+    </div>
+    <form action="predict_cancer" method="POST" class="form-back purple-text">
+      <div class="row">
+        <div class="input-field col s4">
+          <label class="inputLabel">Radius_Mean</label>
+          <input placeholder="0" type="text" name="radius Mean" value=" ">
+        </div>
+        <div class="input-field col s4">
+          <label class="inputLabel">Texture_Mean</label>
+          <input placeholder="0" type="text" name="texture Mean" value=" ">
+        </div>
+        <div class="input-field col s4">
+            <label class="inputLabel">Perimeter_Mean</label>
+            <input placeholder="0" type="text" name="perimeter Mean" value=" ">
+          </div>
+      </div>
+
+      <div class="row">
+        
+        <div class="input-field col s4">
+          <label class="inputLabel">Area_Mean</label>
+          <input placeholder="0" type="text" name="area Mean" value=" ">
+        </div>
+        <div class="input-field col s4">
+            <label class="inputLabel">Smoothness_Mean</label>
+            <input placeholder="0" type="text" name="smoothness Mean" value=" ">
+          </div>
+        <div class="input-field col s4">
+            <label class="inputLabel">Compactness_Mean</label>
+            <input placeholder="0" type="text" name="compactness Mean" value=" ">
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="input-field col s4">
+            <label class="inputLabel">Concavity_Mean</label>
+            <input placeholder="0" type="text" name="concavity Mean" value=" ">
+        </div>
+        <div class="input-field col s4">
+            <label class="inputLabel">Concave Points_Mean</label>
+            <input placeholder="0" type="text" name="concave points Mean" value=" ">
+        </div>
+        <div class="input-field col s4">
+          <label class="inputLabel">Symmetric Mean</label>
+          <input placeholder="0" type="text" name="symmetric Mean" value=" ">
+      </div>
+  
+      </div>
+
+      <div class="row">
+        <div class="input-field col s4">
+          <label class="inputLabel">fractal dimension Mean</label>
+          <input placeholder="0" type="text" name="fractal Mean" value=" ">
+        </div>
+        <div class="input-field col s4">
+          <label class="inputLabel">Radius_Se</label>
+          <input placeholder="0" type="text" name="radius" value=" ">
+        </div>
+        <div class="input-field col s4">
+            <label class="inputLabel">Texture_Se</label>
+            <input placeholder="0" type="text" name="texture" value=" ">
+          </div>
+        </div>
+      <div class="row">
+          <div class="input-field col s4">
+            <label class="inputLabel">Perimeter_Se</label>
+            <input placeholder="0" type="text" name="perimeter" value=" ">
+          </div>
+          <div class="input-field col s4">
+            <label class="inputLabel">Area_Se</label>
+            <input placeholder="0" type="text" name="area se" value=" ">
+          </div>
+          <div class="input-field col s4">
+            <label class="inputLabel">Smoothness_Se</label>
+            <input placeholder="0" type="text" name="smoothness" value=" ">
+          </div>
+      </div>
+
+      <div class="row">
+      
+        <div class="input-field col s4">
+          <label class="inputLabel">Compactness_Se</label>
+          <input placeholder="0" type="text" name="compactness" value=" ">
+        </div>
+        <div class="input-field col s4">
+            <label class="inputLabel">Concavity_Se</label>
+            <input placeholder="0" type="text" name="concavity" value=" ">
+          </div>
+        <div class="input-field col s4">
+            <label class="inputLabel">Concave Points_Se</label>
+            <input placeholder="0" type="text" name="Concave points_se" value=" ">
+        </div>
+      </div>
+
+      <div class="row">
+        
+
+        <div class="input-field col s4">
+            <label class="inputLabel">Symmetry_Se</label>
+            <input placeholder="0" type="text" name="symmetry_se" value=" ">
+          </div>
+          <div class="input-field col s4">
+            <label class="inputLabel">Fractal_Dimension_Se</label>
+            <input placeholder="0" type="text" name="fractal_dimension_se" value=" ">
+          </div>
+          <div class="input-field col s4">
+            <label class="inputLabel">Radius_Worst</label>
+            <input placeholder="0" type="text" name="radius_worst" value=" ">
+          </div>
+
+      </div>
+
+
+      <div class="row">
+   
+        <div class="input-field col s4">
+          <label class="inputLabel">Texture_Worst</label>
+          <input placeholder="0" type="text" name="texture_worst" value=" ">
+        </div>
+        <div class="input-field col s4">
+            <label class="inputLabel">Perimeter_Worst</label>
+            <input placeholder="0" type="text" name="perimeter_worst" value=" ">
+          </div>
+          <div class="input-field col s4">
+            <label class="inputLabel">Area_Worst</label>
+            <input placeholder="0" type="text" name="area_worst" value=" ">
+          </div>
+      </div>
+
+      <div class="row">
+        
+      
+        <div class="input-field col s4">
+            <label class="inputLabel">Smoothness_Worst</label>
+            <input placeholder="0" type="text" name="smoothness_worst" value=" ">
+          </div>
+          <div class="input-field col s4">
+            <label class="inputLabel">Compactness_Worst</label>
+            <input placeholder="0" type="text" name="compactness_worst" value=" ">
+          </div>
+          <div class="row">
+            <div class="input-field col s4">
+              <label class="inputLabel">Concavity_Worst</label>
+              <input placeholder="0" type="text" name="concavity_worst" value=" ">
+            </div>
+      </div>
+
+      
+      <div class="row">
+        
+        <div class="input-field col s4">
+          <label class="inputLabel">Concave Points_Worst</label>
+          <input placeholder="0" type="text" name="concave points_worst" value=" ">
+        </div>
+        <div class="input-field col s4">
+            <label class="inputLabel">Symmetry_Worst</label>
+            <input placeholder="0" type="text" name="Symmetry_worst" value=" ">
+          </div>
+          <div class="input-field col s4">
+            <label class="inputLabel">Fractal_Dimension_Worst</label>
+            <input placeholder="0" type="text" name="Fractal_dimension_worst" value=" ">
+          </div>
+      </div>
+
+      <!-- <div class="row"> -->
+        
+        
+      
+  
+      <div class="center">
+        <input type="submit" class="btn brand z-depth-0">
+      </div>
+      <div class="predict"">
+        <div class="predicted btn brand z-depth-0">{{ prediction }}</div>
+      </div>
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+  </body>
+</html>
